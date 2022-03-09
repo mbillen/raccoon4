@@ -266,7 +266,7 @@ public class GooglePlayAPI {
 						{ "has_permission", "1" }, { "source", "android" },
 						{ "app", "com.google.android.gsf" }, { "device_country", "us" },
 						{ "device_country", "us" }, { "lang", "en" },
-						{ "sdk_version", "17" }, }, null);
+						{ "sdk_version", "16" }, }, null);
 
 		Map<String, String> c2dmAuth = Utils.parseResponse(new String(Utils
 				.readAll(c2dmResponseEntity.getContent())));
@@ -378,11 +378,11 @@ public class GooglePlayAPI {
 			throws IOException {
 
 		Builder bulkDetailsRequestBuilder = BulkDetailsRequest.newBuilder();
-		bulkDetailsRequestBuilder.addAllDocid(packageNames).setIncludeDetails(true);
+		bulkDetailsRequestBuilder.addAllDocid(packageNames).setIncludeDetails(true).setIncludeChildDocs(true);
 
 		ResponseWrapper responseWrapper = executePOSTRequest(BULKDETAILS_URL,
 				bulkDetailsRequestBuilder.build().toByteArray(),
-				"application/x-protobuf");
+				"application/protobuf");
 
 		return responseWrapper.getPayload().getBulkDetailsResponse();
 	}
@@ -510,6 +510,7 @@ public class GooglePlayAPI {
 	public InputStream executeDownload(String url, String cookie)
 			throws IOException {
 
+		if (cookie!= null) {
 		String[][] headerParams = new String[][] {
 				{ "Cookie", cookie },
 				{ "User-Agent",
@@ -517,6 +518,15 @@ public class GooglePlayAPI {
 
 		HttpEntity httpEntity = executeGet(url, null, headerParams);
 		return httpEntity.getContent();
+		}
+		else {
+			String[][] headerParams = new String[][] {
+				{ "User-Agent",
+						"AndroidDownloadManager/4.1.1 (Linux; U; Android 4.1.1; Nexus S Build/JRO03E)" }, };
+
+		HttpEntity httpEntity = executeGet(url, null, headerParams);
+		return httpEntity.getContent();
+		}
 	}
 
 	/**

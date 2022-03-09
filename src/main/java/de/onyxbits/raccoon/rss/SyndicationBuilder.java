@@ -94,10 +94,14 @@ public class SyndicationBuilder extends AbstractPanelBuilder {
 
 	public void onResult(List<FeedItem> items) {
 		StringBuilder sb = new StringBuilder("<dl>");
+		int count=0;
 		for (FeedItem item : items) {
+			if (count==10) {
+				break;
+			}
 			sb.append("<dt style=\"margin:3px;font-weight:700;\"><a href=\"");
 			sb.append(item.getLink());
-			sb.append("\">");
+			sb.append("?utm_source=raccoon4\">");
 			if (!"".equals(item.getTitle())) { 
 			sb.append(item.getTitle());
 			}
@@ -108,6 +112,7 @@ public class SyndicationBuilder extends AbstractPanelBuilder {
 			sb.append("<dd style=\"margin:5px 15px 10px 15px;\">");
 			sb.append(item.getDescription());
 			sb.append("</dd>");
+			count++;
 		}
 		sb.append("</dl>");
 		if (!content.getText().equals(sb.toString())) {
