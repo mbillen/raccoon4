@@ -12,9 +12,9 @@ DEADJOE
 *~
 
 # Eclipse files
-.classpath
-.project
-.settings/
+#.classpath
+#.project
+#.settings/
 
 # IntelliJ IDEA files
 .idea
