@@ -19,7 +19,6 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 
@@ -29,14 +28,14 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
 import javax.swing.event.HyperlinkEvent.EventType;
+import javax.swing.event.HyperlinkListener;
 
 import de.onyxbits.raccoon.Bookmarks;
+import de.onyxbits.raccoon.db.DatabaseManager;
 import de.onyxbits.raccoon.db.DatasetEvent;
 import de.onyxbits.raccoon.db.DatasetListener;
 import de.onyxbits.raccoon.db.DatasetListenerProxy;
-import de.onyxbits.raccoon.db.DatabaseManager;
 import de.onyxbits.raccoon.db.VariableDao;
 import de.onyxbits.raccoon.db.Variables;
 import de.onyxbits.raccoon.gui.TitleStrip;
@@ -68,11 +67,11 @@ final class OverviewBuilder extends AbstractPanelBuilder implements
 		border = new EmptyBorder(10, 5, 5, 5);
 		titleStrip = new TitleStrip("", "", TitleStrip.BLANK);
 		URL feed = null;
-		try {
-			feed = Bookmarks.SHOUTBOXFEED.toURL();
-		}
-		catch (MalformedURLException e) {
-		}
+//		try {
+//			feed = Bookmarks.SHOUTBOXFEED.toURL();
+//		}
+//		catch (MalformedURLException e) {
+//		}
 		AbstractPanelBuilder shouts = new SyndicationBuilder(Messages.getString(ID
 				+ ".shoutfeed"), feed).withBorder(border);
 		titleStrip.setSubTitle(Messages.getString(ID + ".waitadb"));
