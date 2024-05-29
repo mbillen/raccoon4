@@ -35,22 +35,22 @@ class VersionWorker extends SwingWorker<Version, Integer> {
 
 	@Override
 	protected Version doInBackground() throws Exception {
-		InputStream in = null;
-		try {
-			in = Bookmarks.LATEST.toURL().openStream();
-			return new Version(IOUtils.toString(in, "UTF-8").trim());
-		}
-		catch (Exception e) {
-			// Not important enough to make a fuss about.
-			// e.printStackTrace();
-		}
-
-		try {
-			in.close();
-		}
-		catch (Exception e) {
-
-		}
+//		InputStream in = null;
+//		try {
+//			in = Bookmarks.LATEST.toURL().openStream();
+//			return new Version(IOUtils.toString(in, "UTF-8").trim());
+//		}
+//		catch (Exception e) {
+//			// Not important enough to make a fuss about.
+//			// e.printStackTrace();
+//		}
+//
+//		try {
+//			in.close();
+//		}
+//		catch (Exception e) {
+//
+//		}
 		return new Version("0.0.0");
 	}
 
